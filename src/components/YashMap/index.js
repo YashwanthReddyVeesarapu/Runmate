@@ -22,7 +22,6 @@ const Map = ({ latLng, setLatLng, destLatLng }) => {
     destLatLng.forEach((o) => {
       wayptsStr = wayptsStr.concat(o.lng + "," + o.lat + ";");
     });
-    console.log(wayptsStr);
     const query = await mapApiInstance.get(
       `/${latLng.lng},${latLng.lat};
       ${wayptsStr}
@@ -108,7 +107,6 @@ const Map = ({ latLng, setLatLng, destLatLng }) => {
   useEffect(() => {
     if (destLatLng == null) return;
     let start = [latLng.lng, latLng.lat];
-    console.log(start);
 
     if (map.current) {
       // make an initial directions request that

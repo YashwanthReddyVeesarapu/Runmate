@@ -62,7 +62,7 @@ const ChatPage = () => {
         .then((data) => {
           setConversations(data);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => alert("Something went wrong!!!"));
     };
     conversationsData();
   }, [user.id]);
@@ -82,7 +82,7 @@ const ChatPage = () => {
             setMessagesList(data);
           })
           .catch((e) => {
-            console.log(e);
+            alert("Something went wrong!!!");
           });
       }
     };
@@ -96,9 +96,13 @@ const ChatPage = () => {
   const handleMessageSubmite = async (event) => {
     event.preventDefault();
     const friendId = getFriendId(user.id);
-    const newMessage = document.getElementById("newMessage").value;
-    console.log("user.id", user.id);
-    console.log("friendId", friendId);
+    const newMessage = sendMessage.trim(); // trim() removes leading/trailing spaces
+
+    if (!newMessage) {
+      // if message is empty or contains only spaces
+      alert("Please enter a valid message");
+      return;
+    }
 
     socketRef.current.emit("sendMessage", {
       userId: user.id,
@@ -119,6 +123,7 @@ const ChatPage = () => {
       })
       .catch((e) => console.log(e));
   };
+
   //https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
   //current useEffect answering for scrolling down if new message coming in
   useEffect(() => {
@@ -127,7 +132,7 @@ const ChatPage = () => {
     }
   }, [messagesList]);
   let friendList = [];
-  if (conversations.length !== 0) {
+  if (Array.isArray(conversations) && conversations.length !== 0) {
     friendList = conversations.map((i) => (
       <div key={i._id} onClick={() => setChat(i)}>
         <FriendList conversation={i.members} userID={user.id} />
@@ -135,7 +140,7 @@ const ChatPage = () => {
     ));
   }
   let messageList = [];
-  if (messagesList.length !== 0) {
+  if (Array.isArray(messagesList) && messagesList.length !== 0) {
     messageList = messagesList.map((i) => (
       <li key={i.Time} ref={scrollMessageRef}>
         <Message Text={i.Text} Time={i.Time} own={i.UserId === user.id} />
@@ -148,8 +153,6 @@ const ChatPage = () => {
       <div className="row">
         <div className="column left">
           <h2>chatMenu</h2>
-          <label htmlFor="my-input">Friend Search:</label>
-          <input id="my-input" className="FriendSearch"></input>
           {friendList}
         </div>
         <div className="column middle">
@@ -188,7 +191,10 @@ const ChatPage = () => {
         <div className="column right">
           <h2>Friend</h2>
           {chat?._id ? (
-            <FriendOnline conversation={chat.members} friendId={chat._id} />
+            <FriendOnline
+              conversation={chat.members}
+              userID={auth.currentUser.uid}
+            />
           ) : (
             <div>No friend Open</div>
           )}

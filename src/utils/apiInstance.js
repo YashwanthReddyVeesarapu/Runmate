@@ -1,17 +1,15 @@
 import axios from "axios";
-import { getAuth } from "firebase/auth";
 
-let production = false;
-
-const auth = getAuth();
-
+let dev = false;
 if (window.location.hostname === "localhost") {
-  production = true;
+  dev = true;
 }
+dev = false;
+export const serverURI = dev
+  ? "http://localhost:4000/"
+  : "https://runnmate.herokuapp.com/";
 
-export const url = production ? "http://localhost:4000/" : serverURI;
+export const url = serverURI;
 export const apiInstance = axios.create({
   baseURL: url,
 });
-
-export const serverURI = "https://calm-basin-92563.herokuapp.com/";

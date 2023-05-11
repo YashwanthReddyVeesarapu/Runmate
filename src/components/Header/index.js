@@ -12,6 +12,20 @@ const Header = () => {
 
   return (
     <header>
+      {/* {currentUser ? (
+        <div className="htxt" onClick={() => navigate("/")}>
+          <Typography fontSize={"2em"} variant={"h1"} fontStyle={"italic"}>
+            RunMate
+          </Typography>
+        </div>
+      ) : (
+        <div className="htxt" >
+          <Typography fontSize={"2em"} variant={"h1"} fontStyle={"italic"}>
+            RunMate
+          </Typography>
+        </div>
+      )} */}
+
       <div className="htxt" onClick={() => navigate("/")}>
         <Typography fontSize={"2em"} variant={"h1"} fontStyle={"italic"}>
           RunMate
@@ -21,25 +35,22 @@ const Header = () => {
       <div className="auth-links">
         {currentUser ? (
           <>
-            {window.location.pathname !== "/friends" && (
-              <NavLink className="nav-link" to="/friends">
-                Friends
-              </NavLink>
-            )}
-            {window.location.pathname !== "/profile" ? (
-              <NavLink className="nav-link" to="/profile">
-                Profile
-              </NavLink>
-            ) : (
-              <NavLink className="nav-link" to="/">
-                Home
-              </NavLink>
-            )}
+            <NavLink className="nav-link" to="/chat">
+              Chat
+            </NavLink>
+            <NavLink className="nav-link" to="/mymap">
+              Map
+            </NavLink>
+            <NavLink className="nav-link" to="/friends">
+              Friends
+            </NavLink>
+
+            <NavLink className="nav-link" to="/profile">
+              Profile
+            </NavLink>
           </>
         ) : (
           <>
-            <NavLink to={"/"}>Home</NavLink>
-            <NavLink to={"/mymap"}>Map</NavLink>
             {window.location.pathname !== "/login" && (
               <NavLink to={"/login"}>Login</NavLink>
             )}

@@ -12,13 +12,6 @@ const initialState = {
 const chatroomReducer = (state = initialState, action) => {
   const { type, payload } = action;
 
-  const log = (state, payload) => {
-    console.log("state:", state);
-    console.log("payload:", payload);
-  };
-
-  log(state, payload);
-
   switch (type) {
     case "JOIN_CHATROOM":
       // chatroom = {

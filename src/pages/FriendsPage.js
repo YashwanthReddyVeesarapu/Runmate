@@ -63,17 +63,12 @@ const FriendsPage = () => {
     fetchfriends();
   }, [populate]);
 
-  useEffect(() => {
-    setInterval(() => {
-      setPopulate(populate + 1);
-    }, 5000);
-  }, []);
-
   const sendRequest = async (id) => {
     const res = await apiInstance.post("/friends", {
       targetId: id,
       uid: auth.currentUser.uid,
     });
+    setPopulate(populate + 1);
   };
 
   const acceptRequest = async (id) => {
@@ -81,12 +76,22 @@ const FriendsPage = () => {
       targetId: auth.currentUser.uid,
       uid: id,
     });
-    setPopulate(populate + 1);
     const conv = await apiInstance.post(`/conversations`, {
       senderId: auth.currentUser.uid,
       receiverId: id,
     });
-    console.log(conv);
+    const getConv = await apiInstance.get(
+      `/conversations/${auth.currentUser.uid}/${id}`
+    );
+    await apiInstance.post(`/messages`, {
+      conversationId: getConv.data._id,
+      userId: id,
+      text: "Now we are friends",
+    });
+    // console.log("conv", conv);
+    // console.log("res", res);
+    // console.log("getConv", getConv.data._id)
+    setPopulate(populate + 1);
   };
 
   const declineRequest = async (id) => {
@@ -94,6 +99,18 @@ const FriendsPage = () => {
       targetId: auth.currentUser.uid,
       uid: id,
     });
+    setPopulate(populate + 1);
+  };
+
+  const removeFriend = async (id) => {
+    const res = await apiInstance.post("/friends/removeFriend", {
+      targetId: auth.currentUser.uid,
+      uid: id,
+    });
+    const conv = await apiInstance.get(
+      `/conversations/delete/${id}/${auth.currentUser.uid}`
+    );
+
     setPopulate(populate + 1);
   };
 
@@ -168,8 +185,16 @@ const FriendsPage = () => {
                           <Button
                             onClick={() => acceptRequest(o._id)}
                             variant={"contained"}
+                            color={"primary"}
                           >
                             Accept
+                          </Button>
+                          <Button
+                            onClick={() => declineRequest(o._id)}
+                            variant={"contained"}
+                            color={"secondary"}
+                          >
+                            Remove
                           </Button>
                         </React.Fragment>
                       }
@@ -196,7 +221,13 @@ const FriendsPage = () => {
                       primary={o.name}
                       secondary={
                         <React.Fragment>
-                          <Button variant={"contained"}>Message</Button>
+                          <Button
+                            onClick={() => removeFriend(o._id)}
+                            variant={"contained"}
+                            color={"secondary"}
+                          >
+                            Remove
+                          </Button>
                         </React.Fragment>
                       }
                     />

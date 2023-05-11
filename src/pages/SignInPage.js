@@ -6,6 +6,8 @@ import { doSocialSignIn } from "../firebase/FirebaseFunctions";
 import "./styles.scss";
 import MainLayout from "../layouts/MainLayout";
 import { Facebook, Google } from "@mui/icons-material";
+import { apiInstance } from "../utils/apiInstance";
+import { InputLabel } from "@mui/material";
 
 const SignInPage = () => {
   const [isSocialSignInDisabled, setIsSocialSignInDisabled] = useState(false);
@@ -20,7 +22,7 @@ const SignInPage = () => {
       .then((res) => {
         if (auth.currentUser) navigate("/");
       })
-      .catch((e) => alert(e));
+      .catch((e) => alert("Either email or password is incorrect"));
   };
 
   const handleSocialSignIn = async (provider) => {
@@ -29,8 +31,17 @@ const SignInPage = () => {
     setIsSocialSignInDisabled(true); // Disable the buttons
 
     try {
-      await doSocialSignIn(provider, auth);
-      if (auth.currentUser) navigate("/");
+      await doSocialSignIn(provider, auth).then((res) => {
+        const user = auth.currentUser;
+        apiInstance
+          .post("/users/register", {
+            name: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          })
+          .then((res) => navigate("/"))
+          .catch((e) => navigate("/"));
+      });
     } catch (error) {
       console.error("Social sign in error:", error);
 
@@ -49,14 +60,13 @@ const SignInPage = () => {
     <MainLayout>
       <div className="login">
         <h2>Login</h2>
+        <br />
         <form onSubmit={handleLogin}>
-          <Input required placeholder="Email" name="email" />
-          <Input
-            required
-            placeholder="Password"
-            name="password"
-            type="password"
-          />
+          <InputLabel htmlFor="email-input">Email</InputLabel>
+          <Input id="email-input" required name="email" />
+
+          <InputLabel htmlFor="password-input">Password</InputLabel>
+          <Input id="password-input" required name="password" type="password" />
           <Button type="submit" variant="contained">
             Login
           </Button>

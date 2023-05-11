@@ -2,32 +2,39 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  width: 100vw;
 
   .htxt {
     cursor: pointer;
-    z-index: 10;
+
+    h1 {
+      margin-right: 50px;
+      color: #000;
+      font-size: 2rem;
+      font-style: italic;
+    }
   }
 
-  h1 {
-    font-size: 2em;
-    font-style: italic;
-    margin: 0;
-    font-weight: bold !important;
+  .auth-links {
+    display: flex;
+    align-items: center;
+
+    a {
+      color: #000;
+      font-weight: 500;
+      text-decoration: none;
+      margin-right: 1rem;
+      font-size: 1.2rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &.nav-link.active {
+        text-decoration: underline;
+      }
+    }
   }
-}
-
-.header a {
-  text-decoration: none;
-  color: #333;
-  font-weight: 600;
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-}
-
-.header a:hover {
-  background-color: #f0f0f0;
 }

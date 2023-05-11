@@ -19,8 +19,6 @@ const AddressAutoComplete = ({ latLng, setLatLng, setDestLatLng }) => {
         }&limit=${20}&sort=distance&query=coffee,park,school`
       );
 
-      console.log(data);
-
       let num = radius + 1 * 1000;
       let lnum = (radius / 4) * 1000;
 
@@ -66,7 +64,6 @@ const AddressAutoComplete = ({ latLng, setLatLng, setDestLatLng }) => {
 
       let res = [];
       arr.forEach((o) => {
-        console.log(o);
         if (o != undefined) {
           let obj = {
             lat: o.geocodes.main.latitude,
@@ -77,7 +74,6 @@ const AddressAutoComplete = ({ latLng, setLatLng, setDestLatLng }) => {
       });
 
       setWaypoints(res);
-      console.log(waypoints);
     }
 
     fetchPlaces();
