@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+# RunMate
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Notice
 
-## Available Scripts
+This project is tested on "Google Chrome", We highly recommend you run this project on the same browser.
 
-In the project directory, you can run:
+### About
 
-### `npm start`
+Welcome to RunMate, the ultimate app for runners of all levels! With its innovative features and user-friendly interface, RunMate is designed to help you achieve your fitness goals and connect with other runners.
+One of the key features of RunMate is its GPS technology, which allows you to easily track your routes. You can save and access the routes you completed, giving you a clear picture of your progress over time. In addition, RunMate includes a record function that lets you keep track of your personal bests for various distances and routes. This feature is particularly useful for setting and achieving your fitness goals.
+RunMate is also a social platform that enables you to connect with other runners and share your progress with them through chat. This feature not only allows you to stay motivated, but also provides an opportunity to learn from other runners and discover new routes to explore.
+Overall, RunMate is an all-in-one solution for runners looking to improve their performance and connect with like-minded individuals. Its user-friendly interface and innovative features make it easy to achieve your fitness goals. So why wait? Download RunMate today and start your journey towards success!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Technologies Used
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ * React
+* Socket.io
+* FirebaseAuth
+* Node.js
+* Mongodb
+* Javascript
+* HTML, CSS
+* Mongodb Atlas
 
-### `npm test`
+### Deploy
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Docker
+2. Vercel
 
-### `npm run build`
+### Install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Install tools
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   > You need download
+   > [Node.js](https://nodejs.org/en/download/)
+   > [Mongodb](https://www.mongodb.com/try/download/community)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install package
 
-### `npm run eject`
+> You need to open integrated Terminal for both backend and frontend
+> Then You should input **`npm i`** on your **Backend Terminal** and **Frontend Terminal**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Run
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> Type **`npm start`** in backend integrated Terminal
+> Type **`npm start`** in frontend integrated Terminal
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Run phoneApp
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1.Search `Expo go` on app store or play store and download the app 2. Go to phoneApp terminal, **`npm i`** install package 3. **`npm start`** to run phoneApp 4. Scan the QR code by `Expo go` to use our phone app
 
-## Learn More
+### Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+> Project runs on http://localhost:3000
+> Website: https://runmate.vercel.app/
